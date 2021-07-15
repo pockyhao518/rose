@@ -27,16 +27,27 @@ class SplashPage extends React.Component {
     }
 
     render() {
-        let tableName;
-        if (this.props.datas[0]){
-            tableName = Object.keys(this.props.datas[0]);
+        const trans = (array) => {
+            let keys = Object.keys(array[0]);
+            let result = keys.map(el => [el]);
+            for (let i = 0; i < keys.length; i++) {
+                let key = keys[i];
+                for (let j = 0; j < array.length; j++) {
+                    let obj = array[j];
+                    result[i].push(obj[key])
+                }
+            }
+            return result.slice(1);
+        }
+
+        if (this.props.datas[0] !== undefined){
+            const table = trans(this.props.datas);
             return (
                 <div>
 
-                    <ul>
-                        <DataList data={tableName} />
-                        {this.props.datas.map(data =>
-                            <DataList key={data._id} data={data} />
+                    <ul className='grid'>
+                        {table.map((data,idx) =>
+                            <DataList key={idx} data={data} />
                         )}
                     </ul>
 
@@ -47,9 +58,7 @@ class SplashPage extends React.Component {
             <div>
                 
                 <ul>
-                    {this.props.datas.map(data =>
-                        <DataList key={data._id} data={data} />
-                    )}
+                    None
                 </ul>
                 
             </div>
