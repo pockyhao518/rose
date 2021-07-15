@@ -11,7 +11,7 @@ export default class DataList extends React.Component {
             <div id={this.props.data._id}>
                 <li>
                     {
-                        array.map(el => <div>{this.props.data[el]}</div>)
+                        array.map(el => <div key={el}>{this.props.data[el]}</div>)
                     }
                 </li>
             </div>
