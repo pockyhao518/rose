@@ -27,8 +27,25 @@ class SplashPage extends React.Component {
     }
 
     render() {
+        let tableName;
+        if (this.props.datas[0]){
+            tableName = Object.keys(this.props.datas[0]);
+            return (
+                <div>
+
+                    <ul>
+                        <DataList data={tableName} />
+                        {this.props.datas.map(data =>
+                            <DataList key={data._id} data={data} />
+                        )}
+                    </ul>
+
+                </div>
+            )
+        }
         return (
             <div>
+                
                 <ul>
                     {this.props.datas.map(data =>
                         <DataList key={data._id} data={data} />
