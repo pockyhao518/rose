@@ -37,7 +37,7 @@ class SplashPage extends React.Component {
                     result[i].push(obj[key])
                 }
             }
-            return result.slice(1);
+            return result;
         }
 
         if (this.props.datas[0] !== undefined){

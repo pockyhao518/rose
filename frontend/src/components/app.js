@@ -3,14 +3,13 @@ import { Route } from 'react-router-dom';
 import SplashPage from "./splash_page";
 import LoadPage from "./load_page";
 import Navbar from "./navbar";
-import Sidebar from "./sidebar";
-
+import Dashboard from './dashboard'
 const App = () => (
     <div>
         <Navbar/>
-        <Sidebar/>
         <div className='main'>
-            <Route exact path="/" component={SplashPage} />
+            <Route exact path="/" component={Dashboard} />
+            <Route exact path="/pull" component={SplashPage} />
             <Route exact path="/load" component={LoadPage} />
         </div>
         
