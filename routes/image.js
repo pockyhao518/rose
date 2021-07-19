@@ -11,7 +11,6 @@ module.exports = (upload) => {
     let gfs;
 
     connect.once('open', () => {
-        // initialize stream
         gfs = new mongoose.mongo.GridFSBucket(connect.db, {
             bucketName: "uploads"
         });
@@ -35,60 +34,26 @@ imageRouter.route('/')
                     filename: req.file.filename,
                     fileId: req.file.id,
                 })
-
-                newImage.save()
+                let check = ['image/gif', 'image/jpeg', 'image/png'].includes(req.file.mimetype);
+                console.log(check)
+                if (check){
+                   newImage.save()
                     .then((image) => {
                         res.status(200).json({
                             success: true,
                             image,
                         });
                     })
-                    .catch(err => res.status(500).json(err));
+                    .catch(err => res.status(500).json(err)); 
+                }else{
+                    return res.status(200).json({
+                        success: false,
+                        message: 'File shoule be image/pdf/py',
+                    });
+                }
+                
             })
             .catch(err => req.status(500).json(err))
     })
-
-    imageRouter.route('/files')
-        .get((req, res, next) => {
-            gfs.find().toArray((err, files) => {
-                if (!files || files.length === 0) {
-                    return res.status(200).json({
-                        success: false,
-                        message: 'No files available'
-                    });
-                }
-
-                files.map(file => {
-                    if (file.contentType === 'image/jpeg' || file.contentType === 'image/png' || file.contentType === 'image/svg') {
-                        file.isImage = true;
-                    } else {
-                        file.isImage = false;
-                    }
-                });
-
-                res.status(200).json({
-                    success: true,
-                    files,
-                });
-            });
-        });
-
-    imageRouter.route('/file/:filename')
-        .get((req, res, next) => {
-            gfs.find({ filename: req.params.filename }).toArray((err, files) => {
-                if (!files[0] || files.length === 0) {
-                    return res.status(200).json({
-                        success: false,
-                        message: 'No files available',
-                    });
-                }
-
-                res.status(200).json({
-                    success: true,
-                    file: files[0],
-                });
-            });
-        });
-
     return imageRouter;
 };

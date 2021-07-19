@@ -23,7 +23,7 @@ export default class LoadPage extends React.Component {
         formData.append('file', this.state.uploadedImage);
         axios.post('/', formData)
             .then((response) => {
-                response.data.success ? alert('File successfully uploaded') : alert('File already exists');
+                response.data.success ? alert('File successfully uploaded') : alert(response.data.message);
             })
             .catch(err => alert('Error: ' + err));
     }
@@ -52,7 +52,7 @@ export default class LoadPage extends React.Component {
                             }}
                         />
                     </div>
-
+                    <br/>
                     <img
                         src={!this.state.check ? Upload : this.state.uploadedImageUrl}
                         alt="upload-image"

@@ -1,5 +1,5 @@
 import {
-    RECEIVE_ALL_DATAS
+    RECEIVE_ALL_DATAS, RECEIVE_DATA
 } from '../actions/data_actions';
 
 const DataReducer = (oldState = {}, action) => {
@@ -7,8 +7,9 @@ const DataReducer = (oldState = {}, action) => {
     let newState = Object.assign({}, oldState);
     switch (action.type) {
         case RECEIVE_ALL_DATAS:
-            Object.assign(newState, action.datas.data);
-            return newState;
+            return action.datas.data;
+        case RECEIVE_DATA:
+            return action.data.data;
         default:
             return oldState;
     }

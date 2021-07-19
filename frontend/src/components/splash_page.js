@@ -3,7 +3,10 @@ import { connect } from "react-redux";
 import {
     fetchDatas,
 } from "../actions/data_actions";
-import DataList from './data_list';
+// import DataList from './data_list';
+import Data from './data';
+import { Link } from "react-router-dom";
+import '../stylesheets/datalist.css'
 
 const mSTP = (state, ownProps) => {
     return {
@@ -20,47 +23,55 @@ const mDTP = (dispatch, ownProps) => {
 class SplashPage extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            datas: []
+        }
     }
 
     componentDidMount() {
-        this.props.fetchDatas();
+        this.props.fetchDatas()
+        .then(datas => this.setState({datas: datas}));
     }
 
     render() {
-        const trans = (array) => {
-            let keys = Object.keys(array[0]);
-            let result = keys.map(el => [el]);
-            for (let i = 0; i < keys.length; i++) {
-                let key = keys[i];
-                for (let j = 0; j < array.length; j++) {
-                    let obj = array[j];
-                    result[i].push(obj[key])
-                }
-            }
-            return result;
-        }
+        // const trans = (array) => {
+        //     let keys = Object.keys(array[0]);
+        //     let result = keys.map(el => [el]);
+        //     for (let i = 0; i < keys.length; i++) {
+        //         let key = keys[i];
+        //         for (let j = 0; j < array.length; j++) {
+        //             let obj = array[j];
+        //             result[i].push(obj[key])
+        //         }
+        //     }
+        //     return result;
+        // }
 
-        if (this.props.datas[0] !== undefined){
-            const table = trans(this.props.datas);
+        // if (this.props.datas[0] !== undefined){
+        //     const table = trans(this.props.datas);
+        //     return (
+        //         <div>
+
+        //             <ul className='grid'>
+        //                 {table.map((data,idx) =>
+        //                     <DataList key={idx} data={data} />
+        //                 )}
+        //             </ul>
+
+        //         </div>
+        //     )
+        // }
+        if (this.state.datas.length !== 0) {
             return (
-                <div>
-
-                    <ul className='grid'>
-                        {table.map((data,idx) =>
-                            <DataList key={idx} data={data} />
-                        )}
-                    </ul>
-
-                </div>
+            <div>
+                <ul className='dataIndex'>
+                    {this.props.datas.map(el => <li key={el._id}><Link to={`/data/${el._id}`} key={el._id} >{el.filename}</Link></li>)}
+                </ul>
+            </div>
             )
         }
         return (
             <div>
-                
-                <ul>
-                    None
-                </ul>
-                
             </div>
         )
     }
