@@ -19,12 +19,21 @@
     text-align: center;
     opacity: 0.6;
 }
-.buttons div:hover{
+.buttons a:hover{
     opacity: 1;
     transition: 0.3s;
 }
-.buttons div a {
+.buttons a {
     text-decoration-line: none;
+    list-style-type:none;
+    border-style: none;
+    border-radius: 25% 10%;
+    padding: 10px;
+    margin: 5px;
+    background: aliceblue;
+    width: 50px;
+    text-align: center;
+    opacity: 0.6;
 }
 
 .buttons{

@@ -9,8 +9,8 @@ class Navbar extends React.Component {
             <div className='nav'>
                 <Link to='/'><img src={Image} /></Link>
                 <div className='buttons'>
-                    <div><Link to='/load'>Upload</Link></div>
-                    <div><Link to='/pull'>Pull</Link></div>
+                    <Link to='/load'>Upload</Link>
+                    <Link to='/pull'>Pull</Link>
                 </div>
                 
             </div>)

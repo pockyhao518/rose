@@ -30,9 +30,23 @@ class Data extends React.Component {
 
     render() {
        if(this.state.data){
-           
+           let dataArr = Object.keys(this.props.datas);
+           let col = dataArr.map(el => <th>{el}</th>);
+           let val = []
+           for (let i = 0; i < dataArr.length; i++) {
+               val.push(this.props.datas[dataArr[i]]);
+           }
             return(
-                <div>{this.props.datas.name}</div>
+                <table cellpadding="2" cellspacing="2" border="0" bgcolor="#dfdfdf" width="40%" align="center">
+                    <thead>
+                        <tr>
+                            {col}
+                        </tr>
+                    </thead>
+                    <tbody id="tableData"><tr>
+                        {val.map(el => <th>{el}</th>)}
+                    </tr></tbody>
+                </table>
             )
        }
         return (
