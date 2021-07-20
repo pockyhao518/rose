@@ -8,6 +8,7 @@ import Data from './data';
 const App = () => (
     <div>
         <Navbar/>
+        <div className='background'></div>
         <div className='main'>
             <Route exact path="/" component={Dashboard} />
             <Route exact path="/pull" component={SplashPage} />

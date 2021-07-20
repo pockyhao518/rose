@@ -16,7 +16,7 @@
   white-space: nowrap; 
 }
 html {
-    background-image: url('istockphoto-937025430-170667a.jpeg');
+    /* background-image: url('istockphoto-937025430-170667a.jpeg'); */
     background-repeat: no-repeat, repeat;
     background-size: cover;
     min-height: 100%;

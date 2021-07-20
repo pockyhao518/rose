@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+// import { Viewer } from '@react-pdf-viewer/core';
 import Upload from './favicon.ico';
 
 export default class LoadPage extends React.Component {
@@ -28,6 +29,7 @@ export default class LoadPage extends React.Component {
             .catch(err => alert('Error: ' + err));
     }
     render() {
+
         return (
             <div className="UploadPage">
                 <div className="Upload">
@@ -44,11 +46,18 @@ export default class LoadPage extends React.Component {
                             type="file"
                             className="Upload__Input"
                             onChange={(event) => {
-                                this.setState({
+                                if (event.target.files[0]){
+                                    this.setState({
                                     uploadedImageUrl: URL.createObjectURL(event.target.files[0]),
                                     uploadedImage: event.target.files[0],
                                     check: ['image/gif', 'image/jpeg', 'image/png'].includes(event.target.files[0]['type'])
+                                }) 
+                                }else{
+                                    this.setState({
+                                        uploadedImageUrl: '',
+                                        check: false,
                                 })
+                                }  
                             }}
                         />
                     </div>

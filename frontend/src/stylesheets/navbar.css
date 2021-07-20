@@ -44,7 +44,19 @@
     height: 70px;
     width: 70px;
     background: transparent;
-    filter: brightness(20%);
+    filter: brightness(15000%);
+}
+
+.nav img:hover{
+    height: 70px;
+    width: 70px;
+    background: transparent;
+    animation-name: fly;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+@keyframes fly {
+    100%{transform: rotate(365deg);}
 }
 
 .main {
@@ -63,5 +75,26 @@
     flex-direction: column;
     height: 80%;
     justify-content: center;
-    color:cadetblue;
+    color:aliceblue;
+}
+
+.background {
+    position: fixed;
+    min-height: 700px;
+    height: 110vh;
+    filter: brightness(95%);
+    background: linear-gradient(37deg,#455eda 30%,#e2a1ad 70%,#69d262 100%);
+    width: 100%;
+    top: -175px;
+    z-index: -1;
+    transform: skewY(-5deg);
+    transform-origin: 0;
+    left: 0px;
+    animation-name: home;
+    animation-duration: 3s;
+}
+
+@keyframes home {
+    0%{transform: skewY(0deg)}
+    100%{transform: skewY(-5deg)}
 }
