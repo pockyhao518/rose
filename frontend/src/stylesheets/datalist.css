@@ -46,12 +46,27 @@ img {
 }
 
 .dataIndex a{
-  text-decoration-line: none;
-  border-style: none;
+    text-decoration-line: none;
+    border-style: none;
     border-radius: 25% 10%;
     padding: 10px;
     margin: 5px;
     background: aliceblue;
     width: 50px;
     text-align: center;
+}
+
+th {
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  width: 20%;
+  height: 50px;
+  overflow: auto;
+  white-space: nowrap; 
+}
+
+.pullTable {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 20px;
+    border-spacing: 0px;
 }
