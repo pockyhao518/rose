@@ -15,15 +15,10 @@
   overflow: auto;
   white-space: nowrap; 
 }
-html {
-    /* background-image: url('istockphoto-937025430-170667a.jpeg'); */
-    background-repeat: no-repeat, repeat;
-    background-size: cover;
-    min-height: 100%;
-}
 
 body{
   height: 100%;
+  margin-left: 0px;
 }
 
 .grid {

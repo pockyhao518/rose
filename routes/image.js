@@ -48,7 +48,7 @@ imageRouter.route('/')
                 }else{
                     return res.status(200).json({
                         success: false,
-                        message: 'File shoule be image/pdf/py',
+                        message: 'File shoule be image',
                     });
                 }
                 

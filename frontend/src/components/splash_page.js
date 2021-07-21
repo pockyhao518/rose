@@ -4,7 +4,7 @@ import {
     fetchDatas,
 } from "../actions/data_actions";
 // import DataList from './data_list';
-import Data from './data';
+// import Data from './data';
 import { Link } from "react-router-dom";
 import '../stylesheets/datalist.css'
 

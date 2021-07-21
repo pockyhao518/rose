@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 // import { Viewer } from '@react-pdf-viewer/core';
-import Upload from './favicon.ico';
+import Upload from './tenor.gif';
 
 export default class LoadPage extends React.Component {
     constructor(props){
@@ -64,10 +64,9 @@ export default class LoadPage extends React.Component {
                     <br/>
                     <img
                         src={!this.state.check ? Upload : this.state.uploadedImageUrl}
-                        alt="upload-image"
+                        alt="upload"
                         className="Upload__Image"
                     />
-
                     <button onClick={this.uploadImage} className="Upload__Button">Upload</button>
                 </div>
             </div>
