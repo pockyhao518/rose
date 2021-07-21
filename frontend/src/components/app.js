@@ -5,7 +5,6 @@ import LoadPage from "./load_page";
 import Navbar from "./navbar";
 import Dashboard from './dashboard';
 import Data from './data';
-import Footer from "./footer";
 const App = () => (
     <div>
         <Navbar/>
@@ -15,7 +14,6 @@ const App = () => (
             <Route exact path="/load" component={LoadPage} />
             <Route exact path="/data/:id" component = {Data} />
         </div>
-        <Footer/>
     </div>
 );
 

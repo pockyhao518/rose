@@ -4,6 +4,8 @@ import I1 from '../image/Reliable.jpeg';
 import I2 from '../image/pngegg.png';
 import I3 from '../image/shared.jpeg';
 import I4 from '../image/effective.png';
+import Footer from "./footer";
+
 class Dashboard extends React.Component{
     render() {
         return (
@@ -29,7 +31,7 @@ class Dashboard extends React.Component{
                 <div className='title2'>
                     <img className='homegif' src={I2} alt='rose' />
                     <div>
-                        <h1>Observant</h1>
+                        <h1>Organized</h1>
                         <h2>Data quality leads to better decision-making across 
                             an organization. Our well-designed and bug-free data
                              set will make your decision much easier </h2>
@@ -53,6 +55,7 @@ class Dashboard extends React.Component{
                             satisfying result.</h2>
                     </div>  
                 </div>
+                <Footer/>
             </div>
             
         )
