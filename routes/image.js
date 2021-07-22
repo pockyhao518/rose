@@ -55,5 +55,103 @@ imageRouter.route('/')
             })
             .catch(err => req.status(500).json(err))
     })
+
+    imageRouter.route('/image/:filename')
+        .get((req, res, next) => {
+            gfs.find({ filename: req.params.filename }).toArray((err, files) => {
+                if (!files[0] || files.length === 0) {
+                    return res.status(200).json({
+                        success: false,
+                        message: 'No files available',
+                    });
+                }
+
+                if (files[0].contentType === 'image/jpeg' || files[0].contentType === 'image/png' || files[0].contentType === 'image/svg+xml') {
+                    // render image to browser
+                    gfs.openDownloadStreamByName(req.params.filename).pipe(res);
+                } else {
+                    res.status(404).json({
+                        err: 'Not an image',
+                    });
+                }
+            });
+        });
+
+    imageRouter.route('/index')
+        .get((req, res, next) => {
+            Image.find()
+                .then((images) => {
+                    res.status(200).json({
+                        success: true,
+                        images: images.reverse(),
+                    });
+                })
+                .catch(err => res.status(500).json(err));
+        });
+
+    imageRouter.route('/delete/:id')
+        .get((req, res, next) => {
+            Image.findOne({ _id: req.params.id })
+                .then((image) => {
+                    if (image) {
+                        Image.deleteOne({ _id: req.params.id })
+                            .then(() => {
+                                return res.status(200).json({
+                                    success: true,
+                                    message: `File with ID: ${req.params.id} deleted`,
+                                });
+                            })
+                            .catch(err => { return res.status(500).json(err) });
+                    } else {
+                        res.status(200).json({
+                            success: false,
+                            message: `File with ID: ${req.params.id} not found`,
+                        });
+                    }
+                })
+                .catch(err => res.status(500).json(err));
+        });
+    imageRouter.route('/files')
+        .get((req, res, next) => {
+            gfs.find().toArray((err, files) => {
+                if (!files || files.length === 0) {
+                    return res.status(200).json({
+                        success: false,
+                        message: 'No files available'
+                    });
+                }
+
+                files.map(file => {
+                    if (file.contentType === 'image/jpeg' || file.contentType === 'image/png' || file.contentType === 'image/svg') {
+                        file.isImage = true;
+                    } else {
+                        file.isImage = false;
+                    }
+                });
+                
+                // files = files.filter(file => file.isImage === true)
+                res.status(200).json({
+                    success: true,
+                    files,
+                });
+            });
+        });
+    imageRouter.route('/file/:filename')
+        .get((req, res, next) => {
+            gfs.find({ filename: req.params.filename }).toArray((err, files) => {
+                if (!files[0] || files.length === 0) {
+                    return res.status(200).json({
+                        success: false,
+                        message: 'No files available',
+                    });
+                }
+
+                res.status(200).json({
+                    success: true,
+                    file: files[0],
+                });
+            });
+        });
+
     return imageRouter;
 };

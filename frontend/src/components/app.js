@@ -5,6 +5,7 @@ import LoadPage from "./load_page";
 import Navbar from "./navbar";
 import Dashboard from './dashboard';
 import Data from './data';
+import Image from './image';
 import Pulldata from "./pullindex";
 import Pullimage from './imagepage'
 const App = () => (
@@ -17,6 +18,7 @@ const App = () => (
             <Route exact path="/pullimage" component={Pullimage} />
             <Route exact path="/load" component={LoadPage} />
             <Route exact path="/data/:id" component = {Data} />
+            <Route exact path="/file/:filename" component={Image} />
         </div>
     </div>
 );

@@ -4,7 +4,7 @@ const Data = require("../../models/Data")
 
 router.get('/', (req, res) => {
     Data.find()
-        .then(datas => res.json(datas))
+        .then(datas => res.json(datas.reverse()))
         .catch(err => res.status(404).json({ notasksfound: 'No Data found' }));
 });
 
