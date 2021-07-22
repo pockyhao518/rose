@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 // import { Viewer } from '@react-pdf-viewer/core';
-import Upload from './tenor.gif';
+import Upload from '../image/preview.png';
 
 export default class LoadPage extends React.Component {
     constructor(props){

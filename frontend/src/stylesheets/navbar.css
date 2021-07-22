@@ -6,7 +6,7 @@
     align-items: center;
     padding: 20px 32px;
     height:40px;
-    background-color: #ffffff;
+    background-color: #056896ee;
     position: fixed;
     overflow: hidden;
     right: 0px;
@@ -218,6 +218,7 @@
     position: relative;
     flex-direction: row;
     padding: 0px 20px 0px;
+    background-color: unset;
     justify-content: space-around;
 }
 

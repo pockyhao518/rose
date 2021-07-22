@@ -65,3 +65,54 @@ th {
     font-size: 20px;
     border-spacing: 0px;
 }
+
+.index{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+.index a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    box-shadow: 10px 10px darkgrey;
+    position: relative;
+}
+.index a:hover{
+   top: 1%;
+   left: 1%;
+   box-shadow: none;
+   transition: box-shadow 0.5s ease-in-out;
+   animation: shadow 1s;
+}
+@keyframes shadow {
+    0%{box-shadow: 10px 10px darkgrey; top: 0; left:0;}
+    100%{box-shadow: none; }
+}
+
+.index a h3{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #4f80d8;
+    animation: a-color 3s infinite;
+}
+@keyframes a-color {
+    0%{color: #4f80d8;}
+    33%{color: #4fd866;}
+    66%{color: #d8764f;}
+    100%{color: #4f80d8;}
+}
+
+.index-background {
+    position: fixed;
+    background-color: #f7f7f7;
+    width: 100%;
+    height: 100%;
+}
