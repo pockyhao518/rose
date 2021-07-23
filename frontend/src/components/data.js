@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import {
     fetchData,
 } from "../actions/data_actions";
+import { Link } from "react-router-dom";
+
 
 const mSTP = (state, ownProps) => {
     return {
@@ -30,23 +32,21 @@ class Data extends React.Component {
 
     render() {
        if(this.state.data){
-           let dataArr = Object.keys(this.props.datas);
-           let col = dataArr.map(el => <th key={el}>{el}</th>);
-           let val = []
-           for (let i = 0; i < dataArr.length; i++) {
-               val.push(this.props.datas[dataArr[i]]);
-           }
+           let val = this.props.datas.data;
             return(
+                <div>
                 <table className='pullTable' border="0" bgcolor="honeydew" width="40%" align="center">
                     <thead>
                         <tr>
-                            {col}
+                            {val[0].map(el=><th>{el}</th>)}
                         </tr>
                     </thead>
-                    <tbody id="tableData"><tr>
-                        {val.map((el,id) => <th key={id+':'+el}>{el}</th>)}
-                    </tr></tbody>
+                    <tbody id="tableData">
+                            {val.slice(1).map(arr => <tr>{arr.map((el,id) => <th key={id + ':' + el}>{el}</th>)}</tr>)}
+                    </tbody>
                 </table>
+                <br />
+                <Link to='/pulldata'><button>Back</button></Link></div>
             )
        }
         return (

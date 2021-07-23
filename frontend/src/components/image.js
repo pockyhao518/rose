@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import {
     fetchImage,
 } from "../actions/data_actions";
+import { Link } from "react-router-dom";
 
 const mSTP = (state, ownProps) => {
     return {
@@ -33,7 +34,11 @@ class Image extends React.Component {
             return(
                 <div><img
                     src={'http://localhost:3000/image/' + this.props.filename}
-                    alt="show"/></div>
+                    alt="show"/>
+                    <br/>
+                    <Link to='/pullimage'><button>Back</button></Link>
+                </div>
+                
             )
         }else{
             return(

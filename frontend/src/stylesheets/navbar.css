@@ -39,7 +39,9 @@
     background: #c6e2fb;
     width: 50px;
     text-align: center;
+    color: black;
     opacity: 0.6;
+    font-family: "Montserrat", sans-serif;
 }
 
 .buttons{
@@ -86,9 +88,10 @@
     justify-content: center;
     color:unset;
     min-height: 400px;
+    font-family: "Montserrat", sans-serif;
 }
 
-.title div {
+.title div,img {
     padding: 10px;
 }
 .title div h1 {
@@ -106,7 +109,7 @@
     color:black;
 }
 
-.title1 div {
+.title1 div,img {
     padding: 10px;
 }
 .title1 div h1 {
@@ -127,7 +130,7 @@
     color:black;
 }
 
-.title2 div {
+.title2 div,img {
     padding: 10px;
 }
 .title2 div h1 {
@@ -148,7 +151,7 @@
     justify-content: center;
     color:black;
 }
-.title3 div {
+.title3 div,img {
     padding: 10px;
 }
 .title3 div h1 {
@@ -168,7 +171,7 @@
     justify-content: center;
     color:black;
 }
-.title4 div {
+.title4 div,img {
     padding: 10px;
 }
 .title4 div h1 {
@@ -239,4 +242,44 @@
 .account-link img {
     height: 40px;width: 40px;
 
+}
+
+.modal-background {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 10;
+}
+.modal-child {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: aliceblue;
+    border-radius: 10%;
+    overflow: hidden
+}
+
+.add-image {
+    text-decoration-line: none;
+    list-style-type:none;
+    border-style: none;
+    border-radius: 45% 20%;
+    padding: 10px;
+    margin: 5px;
+    background: #c6e2fb;
+    width: 70px;
+    text-align: center;
+    opacity: 0.6;
+    font-family: "Montserrat", sans-serif;
+    font-size: 90%;
+}
+
+.add-image:hover{
+    opacity: 1.2;
+    transition: 0.3s;
+    cursor: pointer;
 }

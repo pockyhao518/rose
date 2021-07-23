@@ -8,8 +8,11 @@ import Data from './data';
 import Image from './image';
 import Pulldata from "./pullindex";
 import Pullimage from './imagepage'
+import Modal from '../components/modal/modal';
+
 const App = () => (
     <div>
+        <Modal />
         <Navbar/>
         <Route exact path="/" component={Dashboard} />
         <div className='main'>

@@ -1,22 +1,36 @@
 import React from 'react';
 import axios from 'axios';
 // import { Viewer } from '@react-pdf-viewer/core';
+import { closeModal } from '../actions/modal_actions';
+import { connect } from "react-redux";
 import Upload from '../image/preview.png';
 
-export default class LoadPage extends React.Component {
+const mSTP = (state, ownProps) => {
+    return {};
+}
+
+const mDTP = (dispatch, ownProps) => {
+    return {
+        closeModal: () => dispatch(closeModal()),
+    }
+}
+
+class LoadPage extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             caption: '',
             uploadedImageUrl: '',
             uploadedImage: { },
+            error: '',
             check: false,
         }
     }
     
     uploadImage = () => {
         if (!this.state.caption.trim() || !this.state.uploadedImage.name) {
-            return alert('Caption or file is missing');
+            // return alert('Caption or file is missing');
+            this.setState({ error: 'Caption or file is missing' })
         }
 
         let formData = new FormData();
@@ -24,12 +38,14 @@ export default class LoadPage extends React.Component {
         formData.append('file', this.state.uploadedImage);
         axios.post('/', formData)
             .then((response) => {
-                response.data.success ? alert('File successfully uploaded') : alert(response.data.message);
+                response.data.success ? alert('File successfully uploaded') : this.setState({ error: response.data.message });
+                if (response.data.success) {
+                    this.props.closeModal();
+                }
             })
             .catch(err => alert('Error: ' + err));
     }
     render() {
-
         return (
             <div className="UploadPage">
                 <div className="Upload">
@@ -42,6 +58,8 @@ export default class LoadPage extends React.Component {
                             onChange={event => this.setState({ caption: event.target.value })}
                             value={this.state.caption}
                         />
+                        <div>{this.state.error}</div>
+                        <br />
                         <input
                             type="file"
                             className="Upload__Input"
@@ -61,7 +79,6 @@ export default class LoadPage extends React.Component {
                             }}
                         />
                     </div>
-                    <br/>
                     <img
                         src={!this.state.check ? Upload : this.state.uploadedImageUrl}
                         alt="upload"
@@ -73,3 +90,5 @@ export default class LoadPage extends React.Component {
         )
     }
 }
+
+export default connect(mSTP,mDTP)(LoadPage);

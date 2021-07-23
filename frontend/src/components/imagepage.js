@@ -4,7 +4,7 @@ import {
     fetchImages,
 } from "../actions/data_actions";
 import { Link } from "react-router-dom";
-
+import Search from '../image/icons8-search-24.png'
 const mSTP = (state, ownProps) => {
     if (state.entities.images.images){
         return {
@@ -40,7 +40,18 @@ class Pullimage extends React.Component {
         }else{
             return (
             <div className='imageIndex'>
-                {this.props.images.map((el, idx) => <li key={idx + ':' + el}><Link to={`/file/${el.filename}`} key={el.caption} >{el.caption}</Link></li>)}
+                <div className='c'>
+                        <h3>Caption</h3>
+                        {this.props.images.map((el, idx) => <li key={idx + ':' + el}>{el.caption}</li>)}
+                </div>
+                <div className='f'>
+                        <h3>Date</h3>
+                        {this.props.images.map((el, idx) => <li key={idx + ':' + el}>{el.createdAt.slice(0,10)}</li>)}
+                </div>
+                    <div className='d'>
+                        <h3>Detail</h3>
+                        {this.props.images.map((el, idx) => <li key={idx + ':' + el}><Link to={`/file/${el.filename}`} key={el.caption}><img src ={Search}/></Link></li>)}
+                    </div>
             </div>
         )
         }
