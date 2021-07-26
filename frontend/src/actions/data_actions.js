@@ -4,6 +4,7 @@ export const RECEIVE_ALL_DATAS = 'RECEIVE_ALL_DATAS';
 export const RECEIVE_DATA = 'RECEIVE_DATA';
 export const RECEIVE_ALL_IMAGE = 'RECEIVE_ALL_IMAGE';
 export const RECEIVE_IMAGE = 'RECEIVE_IMAGE';
+export const DELETE_IMAGE = 'DELETE_IMAGE';
 export const reciveDatas = (datas) => ({
     type: RECEIVE_ALL_DATAS,
     datas,
@@ -21,6 +22,11 @@ export const reciveImage = (image) => ({
     type: RECEIVE_IMAGE,
     image
 })
+export const removeImage = (id) => ({
+    type: DELETE_IMAGE,
+    id
+})
+
 export const fetchDatas = () => (dispatch) => {
     return DataUtil.getDatas()
         .then((datas) => dispatch(reciveDatas(datas)))
@@ -38,4 +44,9 @@ export const fetchImages = () => (dispatch) => {
 export const fetchImage = (filename) => (dispatch) => {
     return ImageUtil.getImage(filename)
         .then((image) => dispatch(reciveImage(image)))
+}
+
+export const deleteImage = (id) => (dispatch) => {
+    return ImageUtil.deleteImage(id)
+        .then(() => dispatch(removeImage(id)))
 }

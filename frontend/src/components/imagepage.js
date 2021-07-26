@@ -1,14 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import {
-    fetchImages,
+    fetchImages, deleteImage
 } from "../actions/data_actions";
 import { Link } from "react-router-dom";
 import Search from '../image/icons8-search-24.png'
 const mSTP = (state, ownProps) => {
     if (state.entities.images.images){
         return {
-        images: Object.values(state.entities.images.images),
+            images: Object.values(state.entities.images.images.images),
         };
     }else{
         return {}
@@ -19,6 +19,7 @@ const mSTP = (state, ownProps) => {
 const mDTP = (dispatch, ownProps) => {
     return {
         fetchImages: () => dispatch(fetchImages()),
+        deleteImage: (id) => dispatch(deleteImage(id))
     };
 };
 
@@ -50,7 +51,8 @@ class Pullimage extends React.Component {
                 </div>
                     <div className='d'>
                         <h3>Detail</h3>
-                        {this.props.images.map((el, idx) => <li key={idx + ':' + el}><Link to={`/file/${el.filename}`} key={el.caption}><img src ={Search}/></Link></li>)}
+                        {this.props.images.map((el, idx) => <li key={idx + ':' + el}><Link to={`/file/${el.filename}`} key={el.caption}><img src={Search} /></Link><button onClick={(
+                        ) => this.props.deleteImage(el._id)}>delete</button></li>)}
                     </div>
             </div>
         )

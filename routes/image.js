@@ -90,7 +90,7 @@ imageRouter.route('/')
         });
 
     imageRouter.route('/delete/:id')
-        .get((req, res, next) => {
+        .delete((req, res, next) => {
             Image.findOne({ _id: req.params.id })
                 .then((image) => {
                     if (image) {
@@ -111,6 +111,7 @@ imageRouter.route('/')
                 })
                 .catch(err => res.status(500).json(err));
         });
+
     imageRouter.route('/files')
         .get((req, res, next) => {
             gfs.find().toArray((err, files) => {

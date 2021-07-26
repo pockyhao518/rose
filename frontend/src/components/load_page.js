@@ -4,6 +4,9 @@ import axios from 'axios';
 import { closeModal } from '../actions/modal_actions';
 import { connect } from "react-redux";
 import Upload from '../image/preview.png';
+import {
+    fetchImages
+} from "../actions/data_actions";
 
 const mSTP = (state, ownProps) => {
     return {};
@@ -11,6 +14,7 @@ const mSTP = (state, ownProps) => {
 
 const mDTP = (dispatch, ownProps) => {
     return {
+        fetchImages: () => dispatch(fetchImages()),
         closeModal: () => dispatch(closeModal()),
     }
 }
@@ -41,6 +45,7 @@ class LoadPage extends React.Component {
                 response.data.success ? alert('File successfully uploaded') : this.setState({ error: response.data.message });
                 if (response.data.success) {
                     this.props.closeModal();
+                    this.props.fetchImages();
                 }
             })
             .catch(err => alert('Error: ' + err));

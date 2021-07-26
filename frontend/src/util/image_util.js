@@ -6,3 +6,6 @@ export const getImages = () => {
 export const getImage = (filename) => {
     return axios.get(`/file/${filename}`)
 }
+export const deleteImage = (id) => {
+    return axios.delete(`/delete/${id}`)
+}

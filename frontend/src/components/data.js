@@ -33,16 +33,22 @@ class Data extends React.Component {
     render() {
        if(this.state.data){
            let val = this.props.datas.data;
+           let len = val[0].length;
             return(
                 <div>
                 <table className='pullTable' border="0" bgcolor="honeydew" width="40%" align="center">
                     <thead>
+                            <tr>
+                                <td className='tableHead' colspan={len}>
+                            {this.props.datas.filename}
+                        </td>
+                            </tr>
                         <tr>
-                            {val[0].map(el=><th>{el}</th>)}
+                            {val[0].map(el=><td>{el}</td>)}
                         </tr>
                     </thead>
                     <tbody id="tableData">
-                            {val.slice(1).map(arr => <tr>{arr.map((el,id) => <th key={id + ':' + el}>{el}</th>)}</tr>)}
+                            {val.slice(1).map(arr => <tr>{arr.map((el,id) => <td key={id + ':' + el}>{el}</td>)}</tr>)}
                     </tbody>
                 </table>
                 <br />

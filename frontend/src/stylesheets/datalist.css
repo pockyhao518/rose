@@ -66,8 +66,29 @@ th {
     width: 100%;
     font-size: 20px;
     border-spacing: 0px;
-}
+    background-color: aliceblue;
+    border-collapse: collapse;
 
+}
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  width: 20%;
+  height: 50px;
+  overflow: auto;
+  white-space: nowrap; 
+}
+thead {
+      color: cornflowerblue;
+}
+.tableHead {
+  background-color: honeydew;
+  font-size: 30px;
+  text-align: center;
+}
+.pullTable tr:nth-child(even){background-color: #f2f2f2;}
+
+.pullTable tr:hover {background-color: #ddd;}
 .index{
     display: flex;
     height: 100%;
@@ -151,9 +172,16 @@ th {
     align-items: center;
 }
 .d img{
-  height: 18px;
-  width: 18px;
+  height: 23px;
+  width: 23px;
   padding: 0px;
+}
+.d li {
+  height: 23px;
+  display: flex;
+}
+.d li button {
+  margin-left: 5px;
 }
 
 .Upload {
