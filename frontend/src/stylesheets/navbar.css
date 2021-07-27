@@ -119,6 +119,7 @@
 .title1 div h2 {
     width: 350px;
     font-family: "Montserrat", sans-serif;
+    margin-left: 20px;
 }
 .title2 {
     display: flex;
@@ -161,6 +162,7 @@
 .title3 div h2 {
     width: 350px;
     font-family: "Montserrat", sans-serif;
+    margin-left: 20px;
 }
 .title4 {
     display: flex;

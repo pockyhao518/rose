@@ -6,7 +6,10 @@ import {
 // import DataList from './data_list';
 // import Data from './data';
 import { Link } from "react-router-dom";
-import '../stylesheets/datalist.css'
+import '../stylesheets/datalist.css';
+import Icon from '../image/free-spreadsheet-icon-16.jpg';
+import pdf from '../image/PikPng.com_pdf-icon-png_405813.png';
+import xls from '../image/xls-icon-3379.png';
 
 const mSTP = (state, ownProps) => {
     return {
@@ -61,11 +64,21 @@ class SplashPage extends React.Component {
         //         </div>
         //     )
         // }
+        
         if (this.state.datas.length !== 0) {
             return (
             <div>
                 <ul className='dataIndex'>
-                    {this.props.datas.map(el => <li key={el._id}><Link to={`/data/${el._id}`} key={el._id} >{el.filename}</Link></li>)}
+                        {this.props.datas.map(el => {
+                        let icon = Icon;
+                        let last = el.filename.split('.')[1];
+                        if(last === 'pdf'){
+                            icon = pdf;
+                        }else if(last === 'xls'){
+                            icon = xls;
+                        }
+                        return <li key={el._id}><Link to={`/data/${el._id}`} key={el._id} ><img src={icon}/></Link><div>{el.filename}</div></li>
+                        })}
                 </ul>
             </div>
             )

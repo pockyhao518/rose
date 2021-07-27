@@ -4,7 +4,7 @@ import {
     fetchImages, deleteImage
 } from "../actions/data_actions";
 import { Link } from "react-router-dom";
-import Search from '../image/icons8-search-24.png'
+// import Search from '../image/icons8-search-24.png'
 const mSTP = (state, ownProps) => {
     if (state.entities.images.images){
         return {
@@ -41,7 +41,7 @@ class Pullimage extends React.Component {
         }else{
             return (
             <div className='imageIndex'>
-                <div className='c'>
+                {/* <div className='c'>
                         <h3>Caption</h3>
                         {this.props.images.map((el, idx) => <li key={idx + ':' + el}>{el.caption}</li>)}
                 </div>
@@ -51,9 +51,24 @@ class Pullimage extends React.Component {
                 </div>
                     <div className='d'>
                         <h3>Detail</h3>
-                        {this.props.images.map((el, idx) => <li key={idx + ':' + el}><Link to={`/file/${el.filename}`} key={el.caption}><img src={Search} /></Link><button onClick={(
+                        {this.props.images.map((el, idx) => <li key={idx + ':' + el}><Link to={`/file/${el.filename}`} key={el.caption}><img
+                            src={'http://localhost:3000/image/' + el.filename}
+                            alt="show" /></Link><button onClick={(
                         ) => this.props.deleteImage(el._id)}>delete</button></li>)}
-                    </div>
+                    </div> */}
+                    {this.props.images.map((el, idx) => 
+                        <li key={idx+':'+el}>
+                            <Link to={`/file/${el.filename}`}>
+                                <figure>
+                                <img
+                                    src={'http://localhost:3000/image/' + el.filename} alt='description'/>
+                                    <figcaption>{el.caption}</figcaption>
+                                </figure>
+                            </Link>
+                            <button onClick={(
+                            ) => this.props.deleteImage(el._id)}>delete</button>
+                        </li>
+                    )}
             </div>
         )
         }

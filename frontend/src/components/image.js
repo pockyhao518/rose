@@ -32,10 +32,11 @@ class Image extends React.Component {
     render(){
         if (this.props.filename){
             return(
-                <div><img
+                <div className='image_container'><img className='image_show'
                     src={'http://localhost:3000/image/' + this.props.filename}
                     alt="show"/>
                     <br/>
+                    <br />
                     <Link to='/pullimage'><button>Back</button></Link>
                 </div>
                 

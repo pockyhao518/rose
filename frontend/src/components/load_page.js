@@ -3,7 +3,7 @@ import axios from 'axios';
 // import { Viewer } from '@react-pdf-viewer/core';
 import { closeModal } from '../actions/modal_actions';
 import { connect } from "react-redux";
-import Upload from '../image/preview.png';
+import Upload from '../image/gallery+image+landscape+mobile+museum+open+line+icon-1320183049020185924_256.png';
 import {
     fetchImages
 } from "../actions/data_actions";
@@ -64,9 +64,9 @@ class LoadPage extends React.Component {
                             value={this.state.caption}
                         />
                         <div>{this.state.error}</div>
-                        <br />
                         <input
                             type="file"
+                            id='file'
                             className="Upload__Input"
                             onChange={(event) => {
                                 if (event.target.files[0]){
@@ -83,6 +83,7 @@ class LoadPage extends React.Component {
                                 }  
                             }}
                         />
+                        <label for="file">Choose a file...</label>
                     </div>
                     <img
                         src={!this.state.check ? Upload : this.state.uploadedImageUrl}
