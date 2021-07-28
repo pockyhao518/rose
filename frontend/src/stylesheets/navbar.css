@@ -285,3 +285,11 @@
     transition: 0.3s;
     cursor: pointer;
 }
+
+.webviewer{
+    height: 400px;
+}
+
+label{
+        margin: 5px;
+}

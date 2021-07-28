@@ -34,7 +34,7 @@ imageRouter.route('/')
                     filename: req.file.filename,
                     fileId: req.file.id,
                 })
-                let check = ['image/gif', 'image/jpeg', 'image/png'].includes(req.file.mimetype);
+                let check = ['image/gif', 'image/jpeg', 'image/png', 'application/pdf'].includes(req.file.mimetype);
                 console.log(check)
                 if (check){
                    newImage.save()
@@ -48,7 +48,7 @@ imageRouter.route('/')
                 }else{
                     return res.status(200).json({
                         success: false,
-                        message: 'File shoule be image',
+                        message: 'File shoule be image or pdf',
                     });
                 }
                 
@@ -66,7 +66,7 @@ imageRouter.route('/')
                     });
                 }
 
-                if (files[0].contentType === 'image/jpeg' || files[0].contentType === 'image/png' || files[0].contentType === 'image/svg+xml') {
+                if (files[0].contentType === 'application/pdf' || files[0].contentType === 'image/jpeg' || files[0].contentType === 'image/png' || files[0].contentType === 'image/svg+xml') {
                     // render image to browser
                     gfs.openDownloadStreamByName(req.params.filename).pipe(res);
                 } else {

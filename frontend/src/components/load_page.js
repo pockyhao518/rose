@@ -7,6 +7,9 @@ import Upload from '../image/gallery+image+landscape+mobile+museum+open+line+ico
 import {
     fetchImages
 } from "../actions/data_actions";
+import WebViewer from '@pdftron/pdfjs-express';
+
+
 
 const mSTP = (state, ownProps) => {
     return {};
@@ -27,8 +30,11 @@ class LoadPage extends React.Component {
             uploadedImageUrl: '',
             uploadedImage: { },
             error: '',
-            check: false,
+            image: false,
+            pdf: false,
+            filename: ''
         }
+        this.viewer = React.createRef();
     }
     
     uploadImage = () => {
@@ -50,7 +56,52 @@ class LoadPage extends React.Component {
             })
             .catch(err => alert('Error: ' + err));
     }
+
+        componentDidMount() {
+            if(this.state.image){
+                return;
+            }
+            WebViewer(
+                {
+                    path: '/webviewer/lib',
+                    initialDoc: this.state.uploadedImageUrl,
+                },
+                this.viewer.current,
+            ).then((instance) => {
+                const { docViewer, Annotations } = instance;
+                // const annotManager = docViewer.getAnnotationManager();
+                docViewer.on('documentLoaded', () => {
+                    const rectangleAnnot = new Annotations.RectangleAnnotation();
+                    rectangleAnnot.PageNumber = 1;
+                    // values are in page coordinates with (0, 0) in the top left
+                    rectangleAnnot.X = 100;
+                    rectangleAnnot.Y = 150;
+                    rectangleAnnot.Width = 200;
+                    rectangleAnnot.Height = 50;
+                    // rectangleAnnot.Author = annotManager.getCurrentUser();
+
+                    // annotManager.addAnnotation(rectangleAnnot);
+                    // need to draw the annotation otherwise it won't show up until the page is refreshed
+                    // annotManager.redrawAnnotation(rectangleAnnot);
+                });
+                document.getElementById('file').onchange = e => {
+                    const file = e.target.files[0];
+                    if (file && e.target.files[0]['type'] === 'application/pdf') {
+                        instance.loadDocument(file);
+                    }
+                };
+            });
+        };
+    
     render() {
+        let display = 'none';
+        if (this.state.image){
+            display = 'block'
+        }
+        let pdfPlay = 'none';
+        if (this.state.pdf){
+            pdfPlay = 'block'
+        }
         return (
             <div className="UploadPage">
                 <div className="Upload">
@@ -73,23 +124,27 @@ class LoadPage extends React.Component {
                                     this.setState({
                                     uploadedImageUrl: URL.createObjectURL(event.target.files[0]),
                                     uploadedImage: event.target.files[0],
-                                    check: ['image/gif', 'image/jpeg', 'image/png'].includes(event.target.files[0]['type'])
+                                    image: ['image/gif', 'image/jpeg', 'image/png'].includes(event.target.files[0]['type']),
+                                    pdf: event.target.files[0]['type'] === 'application/pdf',
+                                        filename: event.target.files[0]['name']
                                 }) 
                                 }else{
                                     this.setState({
                                         uploadedImageUrl: '',
-                                        check: false,
+                                        image: false,
                                 })
                                 }  
                             }}
                         />
-                        <label for="file">Choose a file...</label>
+                        <label htmlFor="file">{!this.state.filename ? 'Choose a file..' : this.state.filename }</label>
                     </div>
                     <img
-                        src={!this.state.check ? Upload : this.state.uploadedImageUrl}
+                        src={!this.state.image ? Upload : this.state.uploadedImageUrl}
                         alt="upload"
                         className="Upload__Image"
+                        style={{display:display}}
                     />
+                    <div className="webviewer" ref={this.viewer} style={{ display: pdfPlay }}></div>
                     <button onClick={this.uploadImage} className="Upload__Button">Upload</button>
                 </div>
             </div>

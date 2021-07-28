@@ -36,6 +36,8 @@ class Data extends React.Component {
            let len = val[0].length;
             return(
                 <div>
+                <Link to='/pulldata'><button>Back</button></Link>
+                <div>
                 <table className='pullTable' border="0" bgcolor="honeydew" width="40%" align="center">
                     <thead>
                             <tr>
@@ -44,15 +46,15 @@ class Data extends React.Component {
                         </td>
                             </tr>
                         <tr>
-                            {val[0].map(el=><td>{el}</td>)}
+                            {val[0].map(el=><td key={'colname:'+el}>{el}</td>)}
                         </tr>
                     </thead>
                     <tbody id="tableData">
-                            {val.slice(1).map(arr => <tr>{arr.map((el,id) => <td key={id + ':' + el}>{el}</td>)}</tr>)}
+                            {val.slice(1).map((arr,k) => <tr key={'row '+ k}>{arr.map((el,id) => <td key={id + ':' + el}>{el}</td>)}</tr>)}
                     </tbody>
                 </table>
                 <br />
-                <Link to='/pulldata'><button>Back</button></Link></div>
+                </div></div>
             )
        }
         return (

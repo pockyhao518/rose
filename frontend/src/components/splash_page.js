@@ -7,7 +7,7 @@ import {
 // import Data from './data';
 import { Link } from "react-router-dom";
 import '../stylesheets/datalist.css';
-import Icon from '../image/free-spreadsheet-icon-16.jpg';
+import Icon from '../image/41pKYQ2IYgL.png';
 import pdf from '../image/PikPng.com_pdf-icon-png_405813.png';
 import xls from '../image/xls-icon-3379.png';
 
@@ -77,7 +77,7 @@ class SplashPage extends React.Component {
                         }else if(last === 'xls'){
                             icon = xls;
                         }
-                        return <li key={el._id}><Link to={`/data/${el._id}`} key={el._id} ><img src={icon}/></Link><div>{el.filename}</div></li>
+                        return <li key={el._id}><Link to={`/data/${el._id}`} key={el._id} ><img src={icon} alt='kitty'/></Link><div>{el.filename}</div></li>
                         })}
                 </ul>
             </div>

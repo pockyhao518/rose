@@ -38,6 +38,7 @@ img {
   list-style-type: none;
   display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
 }
 .dataIndex li {
@@ -282,6 +283,7 @@ figure figcaption {
  }
  .Upload__Image{
     width: 220px;
+    padding-top: 0px;
  }
 
  .imageIndex img{
@@ -303,4 +305,11 @@ figure figcaption {
     justify-items: start;
     overflow-x: auto;
     overflow-y: auto;
+ }
+ #webviewer-1{
+   min-height: 800px;
+ }
+ .webviewer1{
+   height: 800px;
+   overflow: inherit;
  }

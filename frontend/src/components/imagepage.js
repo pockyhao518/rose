@@ -4,6 +4,8 @@ import {
     fetchImages, deleteImage
 } from "../actions/data_actions";
 import { Link } from "react-router-dom";
+import pdf from '../image/PikPng.com_pdf-icon-png_405813.png';
+
 // import Search from '../image/icons8-search-24.png'
 const mSTP = (state, ownProps) => {
     if (state.entities.images.images){
@@ -56,12 +58,12 @@ class Pullimage extends React.Component {
                             alt="show" /></Link><button onClick={(
                         ) => this.props.deleteImage(el._id)}>delete</button></li>)}
                     </div> */}
-                    {this.props.images.map((el, idx) => 
-                        <li key={idx+':'+el}>
+                    {this.props.images.map((el, idx) =>
+                        <li key={idx + ':' + el}>
                             <Link to={`/file/${el.filename}`}>
                                 <figure>
-                                <img
-                                    src={'http://localhost:3000/image/' + el.filename} alt='description'/>
+                                    <img
+                                        src={!(el.filename.split('.')[1] === 'pdf') ? 'http://localhost:3000/image/' + el.filename : pdf} alt='description' />
                                     <figcaption>{el.caption}</figcaption>
                                 </figure>
                             </Link>
@@ -69,6 +71,7 @@ class Pullimage extends React.Component {
                             ) => this.props.deleteImage(el._id)}>delete</button>
                         </li>
                     )}
+
             </div>
         )
         }

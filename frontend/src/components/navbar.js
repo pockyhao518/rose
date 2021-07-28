@@ -38,7 +38,7 @@ class Navbar extends React.Component {
                     <button className="add-image"
                         onClick={this.handleClick('upload-image')}
                     >Upload</button>
-                    <Link to='/pull'>Pull</Link>
+                    <Link to='/pull'>View</Link>
                 </div>
                 
             </div>)
