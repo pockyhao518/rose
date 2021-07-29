@@ -41,7 +41,7 @@ class Data extends React.Component {
                 <table className='pullTable' border="0" bgcolor="honeydew" width="40%" align="center">
                     <thead>
                             <tr>
-                                <td className='tableHead' colspan={len}>
+                                    <td className='tableHead' colSpan={len}>
                             {this.props.datas.filename}
                         </td>
                             </tr>
