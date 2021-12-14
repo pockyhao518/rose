@@ -34,7 +34,7 @@ class Image extends React.Component {
             WebViewer(
             {
                 path: '/webviewer/lib',
-                    initialDoc: 'http://demorose.herokuapp.com/' + this.props.filename,
+                    initialDoc: 'https://demorose.herokuapp.com/api/image/file/' + this.props.filename,
             },
             this.viewer.current,
         ).then((instance) => {
@@ -65,7 +65,7 @@ class Image extends React.Component {
                 <div>
                 <Link to='/pullimage'><button>Back</button></Link>
                 <div className='image_container'><img className='image_show'
-                    src={'http://demorose.herokuapp.com/' + this.props.filename}
+                    src={'https://demorose.herokuapp.com/api/image/file/' + this.props.filename}
                     alt="show"/>
                 </div>
                 </div>
