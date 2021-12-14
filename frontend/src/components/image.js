@@ -65,7 +65,7 @@ class Image extends React.Component {
                 <div>
                 <Link to='/pullimage'><button>Back</button></Link>
                 <div className='image_container'><img className='image_show'
-                    src={'http://localhost:3000/image/' + this.props.filename}
+                    src={'http://demorose.herokuapp.com/' + this.props.filename}
                     alt="show"/>
                 </div>
                 </div>
