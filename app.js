@@ -62,4 +62,4 @@ app.listen(port, () => console.log(`Server is running on port ${port}`));
 app.use("/api/datas", datas);
 
 const upload = multer({ storage });
-app.use('/', imageRouter(upload));
+app.use('/api/image', imageRouter(upload));

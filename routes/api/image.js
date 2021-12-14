@@ -1,8 +1,8 @@
 const express = require('express');
 const imageRouter = express.Router();
 const mongoose = require('mongoose');
-const Image = require('../models/image');
-const config = require('../config/keys');
+const Image = require('../../models/image');
+const config = require('../../config/keys');
 
 module.exports = (upload) => {
     const url = config.mongoURI;
