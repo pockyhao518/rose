@@ -46,7 +46,7 @@ class LoadPage extends React.Component {
         let formData = new FormData();
         formData.append('caption', this.state.caption);
         formData.append('file', this.state.uploadedImage);
-        axios.post('/', formData)
+        axios.post('/api/image/', formData)
             .then((response) => {
                 response.data.success ? alert('File successfully uploaded') : this.setState({ error: response.data.message });
                 if (response.data.success) {

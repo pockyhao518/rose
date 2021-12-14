@@ -146,11 +146,11 @@ imageRouter.route('/')
                         message: 'No files available',
                     });
                 }
-
-                res.status(200).json({
-                    success: true,
-                    file: files[0],
-                });
+                if (files[0].contentType === 'image/jpeg'
+                ||files[0].contentType === 'image/png'
+                ||files[0].contentType === 'image/svg+xml'){
+                    gfs.openDownloadStreamByName(req.params.filename).pipe(res);
+                }
             });
         });
 
