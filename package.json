@@ -39,6 +39,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
+  "proxy": "http://demorose.herokuapp.com/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pockyhao518/rose.git"
