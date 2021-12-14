@@ -148,7 +148,8 @@ imageRouter.route('/')
                 }
                 if (files[0].contentType === 'image/jpeg'
                 ||files[0].contentType === 'image/png'
-                ||files[0].contentType === 'image/svg+xml'){
+                ||files[0].contentType === 'image/svg+xml'
+                ||files[0].contentType === "application/pdf"){
                     gfs.openDownloadStreamByName(req.params.filename).pipe(res);
                 }
             });

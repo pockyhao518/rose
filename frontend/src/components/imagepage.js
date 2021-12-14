@@ -63,7 +63,7 @@ class Pullimage extends React.Component {
                             <Link to={`/file/${el.filename}`}>
                                 <figure>
                                     <img
-                                        src={!(el.filename.split('.')[1] === 'pdf') ? 'https://demorose.herokuapp.com/api/image/file' + el.filename : pdf} alt='description' />
+                                        src={!(el.filename.split('.')[1] === 'pdf') ? 'https://demorose.herokuapp.com/api/image/file/' + el.filename : pdf} alt='description' />
                                     <figcaption>{el.caption}</figcaption>
                                 </figure>
                             </Link>
