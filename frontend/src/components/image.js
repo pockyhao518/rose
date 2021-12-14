@@ -34,7 +34,7 @@ class Image extends React.Component {
             WebViewer(
             {
                 path: '/webviewer/lib',
-                    initialDoc: 'http://localhost:3000/image/' + this.props.filename,
+                    initialDoc: 'http://demorose.herokuapp.com/' + this.props.filename,
             },
             this.viewer.current,
         ).then((instance) => {
